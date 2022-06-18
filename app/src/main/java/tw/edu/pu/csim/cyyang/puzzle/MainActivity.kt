@@ -18,17 +18,69 @@ import android.view.animation.Interpolator
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import kotlinx.coroutines.*
 import tw.edu.pu.csim.cyyang.puzzle.databinding.ActivityMainBinding
 import kotlin.math.min
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
+
     lateinit var binding: ActivityMainBinding;
+    var secondsLeft:Int = 0  //計時
+    lateinit var job: Job
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main);
 
         binding.jigsawView.setPicture(BitmapFactory.decodeResource(resources, R.drawable.photo))
+        //binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.txv.text = secondsLeft.toString() + "秒"
+        binding.btnstart.isEnabled = true
+        binding.btnstop.isEnabled = false
+
+
+        binding.btnstart.setOnClickListener(object:View.OnClickListener{
+            override fun onClick(p0: View?) {
+                job = GlobalScope.launch(Dispatchers.Main) {
+                    while(secondsLeft < 100000000000000) {
+                        secondsLeft++
+                        binding.txv.text = secondsLeft.toString() + "秒"
+                        binding.btnstart.isEnabled = false
+                        binding.btnstop.isEnabled = true
+                        delay(1000)
+                    }
+                }
+            }
+
+        })
+
+        binding.btnstop.setOnClickListener(object:View.OnClickListener{
+            override fun onClick(p0: View?) {
+                job.cancel()
+                binding.btnstart.isEnabled = true
+                binding.btnstop.isEnabled = false
+            }
+        })
+    }
+    override fun onPause() {
+        super.onPause()
+        job.cancel()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (binding.btnstart.isEnabled == false){
+            job = GlobalScope.launch(Dispatchers.Main) {
+                while(secondsLeft < 100000000000000) {
+                    secondsLeft++
+                    binding.txv.text = secondsLeft.toString() + "秒"
+                    delay(1000)
+                }
+            }
+        }
     }
 }
 
@@ -228,7 +280,7 @@ class JigsawView @JvmOverloads constructor(
     }
 
     private fun finish() {
-        Toast.makeText(context, "", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "Finish", Toast.LENGTH_SHORT).show()
     }
 
     private fun startAnimator(
@@ -338,9 +390,7 @@ class JigsawView @JvmOverloads constructor(
 
     }
 
-    /**
-     * 图片块
-     */
+
     inner class PictureBlock {
         var bitmap: Bitmap;
         var postion: Int = 0
