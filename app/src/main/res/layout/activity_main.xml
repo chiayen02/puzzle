@@ -15,28 +15,20 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="94dp"
-            android:padding="10dp">
-
-            <TextView
-                android:id="@+id/txv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.653" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="680dp"
+            android:padding="10dp" />
 
         <tw.edu.pu.csim.cyyang.puzzle.JigsawView
 
             android:id="@+id/jigsawView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_centerInParent="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="-2dp"
             tools:ignore="MissingClass">
 
         </tw.edu.pu.csim.cyyang.puzzle.JigsawView>
@@ -45,10 +37,10 @@
             android:id="@+id/btnstart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginEnd="244dp"
-            android:layout_marginBottom="38dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginBottom="190dp"
             android:text="START" />
 
         <Button
@@ -57,9 +49,21 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginEnd="34dp"
-            android:layout_marginBottom="38dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="190dp"
             android:text="STOP" />
+
+        <TextView
+            android:id="@+id/txv"
+            android:layout_width="81dp"
+            android:layout_height="37dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="165dp"
+            android:layout_marginEnd="165dp"
+            android:layout_marginBottom="190dp"
+            android:text="TextView" />
 
     </RelativeLayout>
 </layout>
