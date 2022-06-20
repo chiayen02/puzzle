@@ -94,31 +94,30 @@ class JigsawView @JvmOverloads constructor(
     //表格大小
     private var tableSize = 3;
 
-    //二维数组，存放图标块
     private val pictureBlock2dMap = Array(tableSize) { Array<PictureBlock?>(tableSize) { null } }
 
 
-    //手势监听
+    //手勢監聽
     private var gestureDetector: GestureDetector = GestureDetector(context, this);
 
-    //是否开始
+    //是否開始
     private var isStart: Boolean = false;
 
-    //空白点坐标
+    //空白點座標
     private var moveBlockPoint: Point = Point(-1, -1);
 
     //top偏移
     private var offsetTop: Int = 0;
 
-    //图片大小
+    //圖片大小
     private var gridItemSize = 0;
     private var slideAnimatorDuration: Long = 150;
     private var showSourceBitmap = false;
-    //移动步数
+    //移動步數
     private var step: Int = 0;
 
     private var itemMovInterpolator:Interpolator=OvershootInterpolator()
-    //目标Bitmap
+    //目標Bitmap
     private lateinit var targetPicture: Bitmap;
 
     fun setPicture(bitmap: Bitmap) {
@@ -213,7 +212,7 @@ class JigsawView @JvmOverloads constructor(
 
     }
 
-    //交换内容
+
     private fun PictureBlock.swap(target: PictureBlock) {
         target.postion = this.postion.also {
             this.postion = target.postion;
@@ -224,7 +223,7 @@ class JigsawView @JvmOverloads constructor(
     }
 
     fun Bitmap.getCenterBitmap(): Bitmap {
-        //如果图片宽度大于View宽度
+        //如果圖片寬段大於View寬度
         var min = min(this.height, this.width)
         if (min >= measuredWidth) {
             val matrix = Matrix()
