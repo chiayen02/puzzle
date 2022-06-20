@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnstart.setOnClickListener(object:View.OnClickListener{
             override fun onClick(p0: View?) {
                 job = GlobalScope.launch(Dispatchers.Main) {
-                    while(secondsLeft < 100000000000000) {
+                    while(secondsLeft < 1000000000000) {
                         secondsLeft++
                         binding.txv.text = secondsLeft.toString() + "秒"
                         binding.btnstart.isEnabled = false
@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         if (binding.btnstart.isEnabled == false){
             job = GlobalScope.launch(Dispatchers.Main) {
-                while(secondsLeft < 100000000000000) {
+                while(secondsLeft < 1000000000000) {
                     secondsLeft++
                     binding.txv.text = secondsLeft.toString() + "秒"
                     delay(1000)
