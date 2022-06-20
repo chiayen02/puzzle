@@ -62,9 +62,9 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="163dp"
-            android:layout_marginEnd="72dp"
-            android:layout_marginBottom="170dp"
+            android:layout_marginStart="141dp"
+            android:layout_marginEnd="94dp"
+            android:layout_marginBottom="169dp"
             android:text="TextView" />
 
     </RelativeLayout>
