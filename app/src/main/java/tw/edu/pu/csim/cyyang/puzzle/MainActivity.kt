@@ -50,6 +50,8 @@ class MainActivity : AppCompatActivity() {
         binding.txv.text = secondsLeft.toString() + "秒"
         binding.btnstart.isEnabled = true
         binding.btnstop.isEnabled = false
+
+
         btnUpdate.setOnClickListener({
             user["名字"] = edtName.text.toString()
             user["秒數"] = edtSecond.text.toString().toInt()
