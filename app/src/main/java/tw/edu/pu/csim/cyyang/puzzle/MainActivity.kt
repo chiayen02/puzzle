@@ -15,31 +15,56 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.animation.*
 import android.view.animation.Interpolator
+import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.*
 import tw.edu.pu.csim.cyyang.puzzle.databinding.ActivityMainBinding
 import kotlin.math.min
 import kotlin.random.Random
 
+
 class MainActivity : AppCompatActivity() {
+    var db = FirebaseFirestore.getInstance()
+    var user: MutableMap<String, Any> = HashMap()
+    lateinit var btnUpdate: Button
+    lateinit var edtName: EditText
+    lateinit var edtSecond: EditText
 
     lateinit var binding: ActivityMainBinding;
-    var secondsLeft:Int = 0  //計時
+    var secondsLeft:Int = 0   //計時
     lateinit var job: Job
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main);
-
         binding.jigsawView.setPicture(BitmapFactory.decodeResource(resources, R.drawable.photo))
         //binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        btnUpdate = findViewById(R.id.btnUpdate)
+        edtName = findViewById(R.id.edtName)
+        edtSecond = findViewById(R.id.edtSecond)
         binding.txv.text = secondsLeft.toString() + "秒"
         binding.btnstart.isEnabled = true
         binding.btnstop.isEnabled = false
+        btnUpdate.setOnClickListener({
+            user["名字"] = edtName.text.toString()
+            user["秒數"] = edtSecond.text.toString().toInt()
+            db.collection("Users")
+                //.document(edtName.text.toString())
+                //.set(user)
+                .add(user)   //自動產生文件ID
+                .addOnSuccessListener{
+                    Toast.makeText(this, "新增資料成功",
+                        Toast.LENGTH_LONG).show()
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(this, "新增資料失敗：" + e.toString(),
+                        Toast.LENGTH_LONG).show()}
+        })
 
 
         binding.btnstart.setOnClickListener(object:View.OnClickListener{

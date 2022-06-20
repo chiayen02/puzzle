@@ -41,8 +41,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="50dp"
-            android:layout_marginBottom="120dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginBottom="160dp"
             android:text="START" />
 
         <Button
@@ -51,8 +51,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginEnd="50dp"
-            android:layout_marginBottom="120dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="160dp"
             android:text="STOP" />
 
         <TextView
@@ -62,10 +62,37 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="141dp"
-            android:layout_marginEnd="94dp"
-            android:layout_marginBottom="169dp"
+            android:layout_marginStart="150dp"
+            android:layout_marginBottom="160dp"
             android:text="TextView" />
+
+        <EditText
+            android:id="@+id/edtName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="110dp"
+            android:hint="請輸入名字"
+            android:inputType="textPersonName" />
+        <EditText
+            android:id="@+id/edtSecond"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="65dp"
+            android:hint="請輸入遊戲完成秒數"
+            android:inputType="number" />
+        <Button
+            android:id="@+id/btnUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="140dp"
+            android:layout_marginEnd="140dp"
+            android:layout_marginBottom="15dp"
+            android:text="新增"/>
 
     </RelativeLayout>
 </layout>
